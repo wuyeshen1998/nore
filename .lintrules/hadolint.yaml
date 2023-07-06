@@ -4,7 +4,7 @@
 ignored:
 #  - DL3009
 #  - DL3003
-
+#  - DL3001
 trustedRegistries:
   - docker.io
 #  - my-company.com:5000

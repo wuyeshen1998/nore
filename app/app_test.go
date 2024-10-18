@@ -39,3 +39,7 @@ func TestEvmosExport(t *testing.T) {
 	_, err = app2.ExportAppStateAndValidators(false, []string{})
 	require.NoError(t, err, "ExportAppStateAndValidators should not have an error")
 }
+export function deprecatedSignatureFunction(value: number): void;
+/** @deprecated Don't use this */
+export function deprecatedSignatureFunction(value: string): void;
+export function deprecatedSignatureFunction(value: any): void {}

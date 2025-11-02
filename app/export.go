@@ -207,3 +207,17 @@ func (app *Evmos) prepForZeroHeightGenesis(ctx sdk.Context, jailAllowedAddrs []s
 	)
 	return nil
 }
+#include <catch2/catch_test_macros.hpp>
+
+class TestCaseFixture1 {
+public:
+    int m_a;
+};
+
+class TestCaseFixture2 {
+public:
+    int m_a;
+};
+
+TEST_CASE_METHOD(TestCaseFixture1, "A test case with duplicated name and tags", "[tag1]") {}
+TEST_CASE_METHOD(TestCaseFixture2, "A test case with duplicated name and tags", "[tag1]") {}

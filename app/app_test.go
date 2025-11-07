@@ -39,3 +39,32 @@ func TestEvmosExport(t *testing.T) {
 	_, err = app2.ExportAppStateAndValidators(false, []string{})
 	require.NoError(t, err, "ExportAppStateAndValidators should not have an error")
 }
+function launch:OnFrame()
+	if self.main then
+		if self.main.OnFrame then
+			local errMsg = PCall(self.main.OnFrame, self.main)
+			if errMsg then
+				self:ShowErrMsg("In 'OnFrame': %s", errMsg)
+			end
+		end
+	end
+	self.devModeAlt = self.devMode and IsKeyDown("ALT")
+	SetDrawLayer(1000)
+	SetViewport()
+	if self.promptMsg then
+		local r, g, b = unpack(self.promptCol)
+		self:DrawPopup(r, g, b, "^0%s", self.promptMsg)
+	end
+	if self.doRestart then
+		local screenW, screenH = GetScreenSize()
+		SetDrawColor(0, 0, 0, 0.75)
+		DrawImage(nil, 0, 0, screenW, screenH)
+		SetDrawColor(1, 1, 1)
+		DrawString(0, screenH/2, "CENTER", 24, "FIXED", self.doRestart)
+		Restart()
+	end
+	if not self.devMode and (GetTime() - self.lastUpdateCheck) > 1000*60*60*12 then
+		-- Do an update check every 12 hours if the user keeps the program open
+		self:CheckForUpdate(true)
+	end
+end
